@@ -1,9 +1,9 @@
 import './App.css';
-import Timer from "./Timer";
-import Settings from "./Settings";
+import Timer from "./Timer.js";
+import Settings from "./Settings.js";
 import {useEffect, useState} from "react";
-import SettingsContext from "./SettingsContext";
-import { auth,provider } from './config';
+import SettingsContext from "./SettingsContext.js";
+import { auth,provider } from './config.js';
 import {signInWithPopup} from "firebase/auth";
 
 function App() {
