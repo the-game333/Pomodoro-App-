@@ -5,17 +5,18 @@ import PauseButton from "./PauseButton";
 import SettingsButton from "./SettingsButton";
 import {useContext, useState, useEffect, useRef} from "react";
 import SettingsContext from "./SettingsContext";
+import Settings from './Settings';
 
 const red = '#f54e4e';
 const green = '#4aec8c';
 
 function Timer() {
   const settingsInfo = useContext(SettingsContext);
-
+  
   const [isPaused, setIsPaused] = useState(true);
   const [mode, setMode] = useState('work'); // work/break/null
   const [secondsLeft, setSecondsLeft] = useState(0);
-
+  const [value, setValue] = useState();
   const secondsLeftRef = useRef(secondsLeft);
   const isPausedRef = useRef(isPaused);
   const modeRef = useRef(mode);
@@ -64,8 +65,17 @@ function Timer() {
   let seconds = secondsLeft % 60;
   if(seconds < 10) seconds = '0'+seconds;
 
-  return (
+  const handleClick=()=>{
+    setValue(true);
+  }
+  const Logout=()=>{
+    localStorage.clear();
+    window.location.reload();
+  }
+  return (<>
+   {value ? <Settings value={setValue}/>:
     <div style={{marginTop:'-40px'}}>
+      <button onClick={Logout} className='lgBtn'>Logout</button>
       <p style={{color:"lightgrey"}}>Pomodoro App made with ♥ and React.js</p>
       <CircularProgressbar
         value={percentage}
@@ -81,9 +91,11 @@ function Timer() {
           : <PauseButton onClick={() => { setIsPaused(true); isPausedRef.current = true; }} />}
       </div>
       <div style={{marginTop:'0px'}}>
-        <SettingsButton onClick={() => settingsInfo.setShowSettings(true)} />
+        <SettingsButton onClick={handleClick} />
       </div>
-    </div>
+    </div> 
+        }
+      </>
   );
 }
 

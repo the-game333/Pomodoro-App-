@@ -36,6 +36,14 @@ button.with-text svg{
   float:left;
   margin-right: 5px;
 }
+.lgBtn{
+  position: absolute;
+  right: 32px;
+  top: 31px;
+  color: rgb(118, 154, 155);
+  font-weight: 800;
+  font-size: 14px;
+}
 
 label{
   display:block;

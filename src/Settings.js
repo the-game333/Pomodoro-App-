@@ -5,7 +5,8 @@ import {useContext} from "react";
 import BackButton from "./BackButton";
 
 
-function Settings() {
+function Settings(props) {
+
   const settingsInfo = useContext(SettingsContext);
   return(
     <div style={{textAlign:'left'}}>
@@ -30,7 +31,7 @@ function Settings() {
         max={120}
       />
       <div style={{textAlign:'center', marginTop:'20px'}}>
-        <BackButton onClick={() => settingsInfo.setShowSettings(false)} />
+        <BackButton onClick={() => props.value(false)} />
       </div>
 
     </div>
